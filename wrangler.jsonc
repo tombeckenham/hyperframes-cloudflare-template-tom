@@ -5,47 +5,19 @@
   "compatibility_date": "2026-04-01",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
-
-  "build": { "command": "node scripts/build.mjs" },
-
-  // BYOK AI generation. The user supplies their own OpenRouter key in the
-  // request body — the worker forwards it once and never persists it.
-  // Self-deployers: keep this as "true" to enable the prompt panel.
-  // Public-demo deployers: flip to "false" so visitors can't run the
-  // render container on your account from generated HTML.
-  "vars": {
-    "ENABLE_AI_GEN": "true"
-  },
-
-  "assets": {
-    "directory": "./public",
-    "binding": "ASSETS"
-  },
-
   "containers": [
     {
       "class_name": "RenderContainer",
       "image": "./Dockerfile",
-      "max_instances": 5,
-      // standard-4 equivalent (4 vCPU / 12 GiB / 20 GB), spelled as a custom
-      // instance type: the Deploy to Cloudflare button's config parser runs an
-      // older wrangler schema that rejects the "standard-4" name but accepts
-      // the object form.
-      "instance_type": { "vcpu": 4, "memory_mib": 12288, "disk_mb": 20000 }
+      "max_instances": 5
     }
   ],
-
   "durable_objects": {
     "bindings": [
       { "name": "RENDER_CONTAINER", "class_name": "RenderContainer" }
     ]
   },
-
   "migrations": [
     { "tag": "v1", "new_sqlite_classes": ["RenderContainer"] }
-  ],
-
-  "r2_buckets": [
-    { "binding": "RENDERS", "bucket_name": "hyperframes-renders" }
   ]
 }
