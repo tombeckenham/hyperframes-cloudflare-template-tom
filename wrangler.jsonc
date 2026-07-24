@@ -5,6 +5,10 @@
   "compatibility_date": "2026-04-01",
   "compatibility_flags": ["nodejs_compat"],
   "observability": { "enabled": true },
+  "build": { "command": "node scripts/build.mjs" },
+  "vars": { "ENABLE_AI_GEN": "true" },
+  "assets": { "directory": "./public", "binding": "ASSETS" },
+  "r2_buckets": [ { "binding": "RENDERS", "bucket_name": "hyperframes-renders" } ],
   "containers": [
     {
       "class_name": "RenderContainer",
