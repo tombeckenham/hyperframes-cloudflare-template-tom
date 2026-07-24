@@ -1,0 +1,27 @@
+{
+  "name": "hyperframes-cloudflare-template",
+  "description": "Preview HTML video compositions in the browser and render MP4s server-side using Cloudflare Workers, Containers, and R2.",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.0.20",
+    "@hyperframes/core": "^0.5.3",
+    "@hyperframes/player": "^0.5.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260301.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

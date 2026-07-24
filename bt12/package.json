@@ -1,0 +1,42 @@
+{
+  "name": "containers-template",
+  "description": "Build a Container-enabled Worker",
+  "cloudflare": {
+    "label": "HyperFrames Video Rendering",
+    "products": [
+      "Workers",
+      "Containers",
+      "R2"
+    ],
+    "categories": [],
+    "docs_url": "https://github.com/heygen-com/hyperframes",
+    "preview_image_url": "",
+    "icon_urls": [],
+    "bindings": {
+      "RENDER_CONTAINER": {
+        "description": "Container Durable Object hosting Chromium + ffmpeg + hyperframes; receives composition files and returns MP4 bytes."
+      },
+      "RENDERS": {
+        "description": "R2 bucket where rendered MP4s are stored. Created automatically on first deploy."
+      },
+      "ASSETS": {
+        "description": "Static asset binding for the preview UI and the bundled composition HTML."
+      }
+    }
+  },
+  "dependencies": {
+    "@cloudflare/containers": "0.0.30",
+    "hono": "4.11.1"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "wrangler": "4.88.0"
+  },
+  "private": true,
+  "scripts": {
+    "cf-typegen": "wrangler types",
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev"
+  }
+}
