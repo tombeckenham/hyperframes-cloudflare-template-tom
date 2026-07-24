@@ -1,33 +1,50 @@
 {
-	"name": "containers-template",
-	"description": "Build a Container-enabled Worker",
-	"cloudflare": {
-		"label": "Containers Starter",
-		"products": [
-			"Workers",
-			"Durable Objects",
-			"Containers"
-		],
-		"categories": [],
-		"docs_url": "https://developers.cloudflare.com/containers/",
-		"preview_image_url": "https://imagedelivery.net/_yJ02hpOMj_EnGvsU2aygw/5aba1fb7-b937-46fd-fa67-138221082200/public",
-		"icon_urls": [
-			"https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/5ca0ca32-e897-4699-d4c1-6b680512f000/public"
-		]
-	},
-	"dependencies": {
-		"@cloudflare/containers": "0.0.30",
-		"hono": "4.11.1"
-	},
-	"devDependencies": {
-		"typescript": "5.9.3",
-		"wrangler": "4.88.0"
-	},
-	"private": true,
-	"scripts": {
-		"cf-typegen": "wrangler types",
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev"
-	}
+  "name": "hyperframes-cloudflare-template",
+  "description": "Preview HTML video compositions in the browser and render MP4s server-side using Cloudflare Workers, Containers, and R2.",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "cloudflare": {
+    "label": "HyperFrames Video Rendering",
+    "products": [
+      "Workers",
+      "Containers",
+      "R2"
+    ],
+    "categories": [],
+    "docs_url": "https://github.com/heygen-com/hyperframes",
+    "preview_image_url": "",
+    "icon_urls": [],
+    "bindings": {
+      "RENDER_CONTAINER": {
+        "description": "Container Durable Object hosting Chromium + ffmpeg + hyperframes; receives composition files and returns MP4 bytes."
+      },
+      "RENDERS": {
+        "description": "R2 bucket where rendered MP4s are stored. Created automatically on first deploy."
+      },
+      "ASSETS": {
+        "description": "Static asset binding for the preview UI and the bundled composition HTML."
+      }
+    }
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "cf-typegen": "wrangler types"
+  },
+  "dependencies": {
+    "@cloudflare/containers": "^0.0.20",
+    "@hyperframes/core": "^0.5.3",
+    "@hyperframes/player": "^0.5.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260301.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.7.2",
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=22"
+  }
 }
